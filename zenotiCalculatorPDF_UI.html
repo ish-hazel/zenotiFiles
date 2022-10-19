@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Zenoti Report</title>
+
+<link rel="stylesheet" href="main.css" />
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.section.form-section {
+  z-index: 1;
+  background-image: linear-gradient(48deg, #00b6ed, #33ad6a);
+  color: #fff;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.site-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  max-width: 1120px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 80px;
+  padding-left: 80px;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.divider-digital-presence-report {
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+}
+
+.body-medium {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.section {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.digital-presence-results-grid-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  grid-row-gap: 60px;
+}
+
+.digital-presence-results-grid {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 32px;
+  grid-row-gap: 16px;
+  -ms-grid-columns: minmax(-webkit-min-content, 0.25fr) 1fr;
+  -ms-grid-columns: minmax(min-content, 0.25fr) 1fr;
+  grid-template-columns: minmax(-webkit-min-content, 0.25fr) 1fr;
+  grid-template-columns: minmax(min-content, 0.25fr) 1fr;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+}
+
+.dpc-score-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-right: 1px solid #000;
+}
+
+.dpc-score-type-text {
+  color: #03b6e8;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.dpc-score-text {
+  margin-top: 0;
+  font-size: 120px;
+  line-height: 1;
+  text-align: center;
+}
+
+.section.light-gray-bg.padding-60 {
+  padding-right: 60px;
+  padding-left: 60px;
+}
+
+.light-gray-bg {
+  background-color: #f7f7f7;
+}
+
+.site-wrapper.padding0 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.heading-dpc-report-section {
+  color: #000;
+  font-size: 24px;
+  line-height: 1.6;
+}
+
+.btn-center-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 24px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.btn-center-container.top-40 {
+  margin-top: 40px;
+}
+
+.btn-center-container.top10 {
+  position: relative;
+  top: 20px;
+}
+
+.btn-center-container.top10.z-index {
+  z-index: 6;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.round-btn-footer {
+  border-radius: 50px;
+  background-color: #e53a24;
+  width: 240px;
+  height: 43px;
+  padding: 10px 20px;
+  font-size: 16px;
+  line-height: 21.79px;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+}
+
+.round-btn-footer.width-240px.w-button{
+width: 240px;
+height: 43px; 
+margin-bottom: 0px;
+padding: 10px 20px;
+font-size: 16px;
+line-height: 21.79px;
+font-weight: 700;
+text-align: center;
+color: white;
+}
+
+.spacer-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.section.gradient-blue-green {
+  background-image: -webkit-gradient(linear, left top, right top, from(#00b6ed), to(#33ad6a));
+  background-image: linear-gradient(90deg, #00b6ed, #33ad6a);
+}
+
+.section.gradient-blue-green.padding0-top20 {
+  margin-bottom: 67px;
+  padding-bottom: 0px;
+}
+
+.section.gradient-blue-green.padding0-top20.top-40 {
+  margin-top: 0px;
+}
+
+.section.gradient-blue-green.top-40 {
+  margin-bottom: 67px;
+  padding-top: 40px;
+  padding-bottom: 0px;
+}
+
+.section.padding60 {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.section-heading-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: auto;
+  margin-bottom: 20px;
+  margin-left: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+
+.section-heading-container.white-color {
+  margin-bottom: 0px;
+  color: #fff;
+}
+
+.body-large {
+    font-size: 24px;
+  }
+
+.body-large.btm-40 {
+  margin-bottom: 40px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.content-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.content-container.center-align {
+  position: relative;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+
+.video-dpc {
+  position: relative;
+  width: 409px;
+  height: 237px;
+  padding-bottom: 0px;
+}
+
+.video-dpc.btm-40 {
+  margin-bottom: 40px;
+}
+
+.play-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 4;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+a:link, a:visited {
+  text-decoration: none;
+}
+
+._2-col-grid {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 60px;
+    grid-row-gap: 60px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+</head>
+
+<body>
+<div id="content" class="report">
+<!-- report  -->
+
+<div class="section form-section section-small wf-section">
+  <div class="site-wrapper">
+    <div class="section-heading-container left-aligned">
+      <h2 class="h2-heading">Digital Presence Report</h2>
+      <div class="divider-digital-presence-report"></div>
+    </div>
+    <p class="body-medium left-align-txt">
+      Digital presence is how your business and brand appear to the world
+      online. When people search for your business online, what will they
+      find? Your website, your google listing, your social media accounts
+      and most importantly what people are saying about you.Your online
+      presence is often the first interaction you'll have with a new
+      customer and one that your current customers will return to. Making
+      sure you can be found and chosen is critical to your success.This
+      report will help you get a clear picture of what your digital
+      presence looks like. Simply answer the questions below to find out
+      how you score in each area and where you need to improve.
+    </p>
+  </div>
+</div>
+
+<div class="section wf-section">
+  <div class="site-wrapper">
+    <div class="digital-presence-results-grid-container">
+      <div class="digital-presence-results-grid">
+        <div id="w-node-_2f218860-713c-baaa-fd1e-8546f23b52ee-af887d14" class="dpc-score-container">
+          <h2 id="result" class="dpc-score-text">31.25</h2>
+          <div class="dpc-score-type-text">Online Listing Score</div>
+        </div>
+        <div id="w-node-_2f218860-713c-baaa-fd1e-8546f23b52f3-af887d14">
+          <p class="body-medium">
+            Can prospective customers find your business online? Do you
+            have a website? If not, get one.;Make sure your business is
+            listed in all the search engines and most importantly claim
+            your online listing and make sure the information is
+            accurate.Missing and inaccurate profiles lower your ranking on
+            Google and make it harder for new customers to find you.
+          </p>
+        </div>
+      </div>
+      <h4>
+        Claim and manage all your online listings to boost your Google
+        ranking, increase traffic, and get more customers.
+      </h4>
+      <div class="digital-presence-results-grid">
+        <div id="w-node-_2f218860-713c-baaa-fd1e-8546f23b5301-af887d14" class="dpc-score-container">
+          <h2 id="result2" class="dpc-score-text">7</h2>
+          <div class="dpc-score-type-text">Online Reputation Score</div>
+        </div>
+        <div id="w-node-_2f218860-713c-baaa-fd1e-8546f23b5306-af887d14">
+          <p class="body-medium">
+            Once prospective customers find you, they want to know if they
+            can trust you to provide a quality service. What have others
+            said about you and your business is extremely important.48% of
+            consumers won’t consider a business with fewer than 4 stars
+            and 86% only pay attention to reviews written in the last 3
+            months.
+          </p>
+        </div>
+      </div>
+      <div class="digital-presence-results-grid">
+        <div id="w-node-_2f218860-713c-baaa-fd1e-8546f23b530d-af887d14" class="dpc-score-container">
+          <h2 id="result3" class="dpc-score-text">20</h2>
+          <div class="dpc-score-type-text">Online Listing Score</div>
+        </div>
+        <div id="w-node-_2f218860-713c-baaa-fd1e-8546f23b5312-af887d14">
+          <p class="body-medium">
+            You spend (or should) time on making sure people can find you
+            online. You’ve worked on your reputation and should have at
+            least a 4-star rating (right?).That’s great but can people
+            book an appointment once they’re ready? 76% of customers
+            prefer the convenience of self-service online
+            scheduling.Convert your website visitors into guests with an
+            easy and convenient way to book online.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section light-gray-bg padding-60 wf-section">
+            <div class="site-wrapper padding0">
+              <h4 class="heading-dpc-report-section">We hope that this was an informative experience. You can download a PDF copy of your final report, as well some additional resources to help improve your scores in each area.</h4>
+              <div class="btn-center-container top-40">
+                <a href="#" id="db_pdf" class="round-btn-footer width-240px w-button">Download Final Report</a>
+                <div class="spacer-32"></div>
+                <a href="#" data-w-id="d05a890a-12e0-7410-1a71-4edafeb7df8e" class="round-btn-footer width-240px w-button">Request Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="section gradient-blue-green top-40 wf-section">
+            <div class="site-wrapper padding-40">
+              <div class="section-heading-container white-color">
+                <h2 class="h2-heading">Resources to improve Online Listing scores<br>‍</h2>
+                <a href="https://view.zenoti.com/viewer/62dafcec57ebfd67834cb903" target="_blank" class="body-large btm-40">Read <span class="underlined">this</span> article about the top 2022 trends to grow your business</a>
+                <a href="https://view.zenoti.com/viewer/62dafaaf5a2998672e161027" target="_blank" class="body-large btm-40">Read <span class="underlined">this</span> short article to learn how Willo Salons generated over $55k in Revenue</a>
+                <p class="body-large btm-40">Watch this short video to learn the Top 4 Reason leading brands trust only Zenoti</p>
+                <a href="https://view.zenoti.com/viewer/62dafbf6c5f88e6718e8408c" target="_blank" class="video-dpc w-inline-block"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp" loading="lazy" srcset="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp 500w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp 800w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp 1080w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp 1600w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp 2000w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bc36456e3840d05a797b_Screenshot%202022-10-08%20052413.webp 2455w" sizes="(max-width: 479px) 0px, 100vw" alt="" class="video-dpc"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/611a6b60973a76c37016117a_blue-play-icon.svg" loading="lazy" alt="blue play button" class="play-icon dpc-pos"></a>
+                <div class="btn-center-container top10">
+                  <a href="#" data-w-id="2de089e9-30e0-d45f-d875-6ff4e72b05a2" class="round-btn-footer width-240px w-button">Request Demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section gradient-blue-green padding0-top20 top-40 wf-section">
+            <div class="site-wrapper padding-40">
+              <div class="section-heading-container white-color">
+                <h2 class="h2-heading">Resources to improve Online Reputation scores<br>‍</h2>
+                <p class="body-large btm-40">Watch this short video to learn how to automate your online review requests to get more reviews and increase your ratings with ezRepute</p>
+                <a href="https://view.zenoti.com/viewer/62dafbf6c5f88e6718e8408c" target="_blank" class="video-dpc btm-40 w-inline-block"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp" loading="lazy" srcset="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp 500w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp 800w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp 1080w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp 1600w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp 2000w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340bfb3859df60ab97fbe0d_Screenshot%202022-10-08%20053909.webp 2600w" sizes="(max-width: 479px) 0px, 100vw" alt="" class="video-dpc"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/611a6b60973a76c37016117a_blue-play-icon.svg" loading="lazy" alt="blue play button" class="play-icon dpc-pos"></a>
+                <a href="https://view.zenoti.com/viewer/62daf59df314fc66733a21a4" target="_blank" class="body-large btm-40">Read <span class="underlined">this</span> short article to learn how to win back unhappy customers and grow your brand reputation with reviews</a>
+                <a href="https://view.zenoti.com/viewer/62daf4ad3901ee662f331382" target="_blank" class="body-large btm-40">Read <span class="underlined">this</span> short article to learn how to boost your reputation scores with EZ Repute</a>
+              </div>
+              <div class="btn-center-container top10">
+                <a href="#" data-w-id="33f2ec97-a40c-025b-0f05-4297ce647191" class="round-btn-footer width-240px w-button">Request Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="section gradient-blue-green padding0-top20 top-40 wf-section">
+            <div class="site-wrapper padding-40">
+              <div class="section-heading-container white-color">
+                <h2 class="h2-heading">Resources to improve Online Booking scores<br>‍</h2>
+                <a href="https://view.zenoti.com/viewer/62dafcec57ebfd67834cb903" target="_blank" class="body-large btm-40">Read <span class="underlined">this</span> article about the top 2022 trends to grow your business</a>
+                <div id="w-node-_905479b8-3045-3cf7-2df4-ae08f63c6429-af887d14" class="_2-col-grid">
+                  <div id="w-node-_463f0ff2-c974-bc74-e036-76b370f4bc52-af887d14" class="content-container center-align">
+                    <p class="body-large">Watch this short video to learn how Online booking creates an unparalleled online experience for your guests</p>
+                    <a href="https://view.zenoti.com/viewer/62daf70e652b35671d57e30f" target="_blank" class="video-dpc btm-40 w-inline-block"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp" loading="lazy" srcset="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp 500w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp 800w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp 1080w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp 1600w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp 2000w, https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c27b2bdcd2512b0f8b11_Screenshot%202022-10-08%20055052.webp 2600w" sizes="(max-width: 479px) 0px, 100vw" alt="" class="video-dpc"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/611a6b60973a76c37016117a_blue-play-icon.svg" loading="lazy" alt="blue play button" class="play-icon dpc-pos"></a>
+                  </div>
+                  <div id="w-node-a266bfcd-7dff-1865-0008-84c519419389-af887d14" class="content-container center-align">
+                    <p class="body-large btm-40">Watch this short video to learn how Removery increased weekly sales 300% with Online Booking</p>
+                    <a href="https://view.zenoti.com/viewer/62dafbf6c5f88e6718e8408c" target="_blank" class="video-dpc btm-40 w-inline-block"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c32beae8f405397623af_Screenshot%202022-10-08%20055351.webp" loading="lazy" srcset="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/6340c32beae8f405397623af_Screenshot%202022-10-08%20055351.webp 500w" sizes="(max-width: 479px) 0px, 100vw" alt="" class="video-dpc"><img src="https://uploads-ssl.webflow.com/60f5b2668dfff508a3bbb37e/611a6b60973a76c37016117a_blue-play-icon.svg" loading="lazy" alt="blue play button" class="play-icon dpc-pos"></a>
+                  </div>
+                </div>
+                <a href="https://view.zenoti.com/viewer/62daf7d75c46b366bf61277b" target="_blank" class="body-large btm-40">Read <span class="underlined">this</span> short article to learn how to add Online Booking to your social media pages</a>
+              </div>
+              <div class="btn-center-container top10 z-index">
+                <a href="#" data-w-id="544cfeeb-566f-771b-bb45-efe1a0616507" class="round-btn-footer width-240px w-button">Request Demo</a>
+              </div>
+            </div>
+          </div>
+</div>
+
+<div id="editor"></div>
+<button class="blog-cta-btn" onclick="CreatePDFfromHTML()">
+Download Again
+</button>
+</body>
+
+<script>
+// functions and data for setting colors;
+
+const colors = {
+red : "#E53A24",
+orange : "#FF7F00",
+yellow : "#FFD26E",
+green : "#33AD6A"
+}
+
+const assignColors = (score) => {
+if(score >= 0 && score <=49 ) return colors.red
+
+if(score >= 50 && score <=69) return colors.orange
+
+if(score >= 70 && score <=89) return colors.yellow
+  
+if(score >= 90 ) return colors.green
+
+}
+
+
+
+
+const urlParams = new URLSearchParams(location.search);
+
+let r1 = 0;
+let r2 = 0;
+let r3 = 0;
+
+for (const [key, value] of urlParams) {
+if (key === "r1") {
+  r1 = value;
+}
+
+if (key === "r2") {
+  r2 = value;
+}
+
+if (key === "r3") {
+  r3 = value;
+}
+}
+
+let h2Tag1 = document.querySelector("#result");
+let h2Tag2 = document.querySelector("#result2");
+let h2Tag3 = document.querySelector("#result3");
+h2Tag1.innerHTML = "" + r1;
+h2Tag2.innerHTML = "" + r2;
+h2Tag3.innerHTML = "" + r3;
+
+// assigning colors based on score
+
+h2Tag1.style.color = assignColors(Number(r1))
+h2Tag2.style.color = assignColors(Number(r2))
+h2Tag3.style.color = assignColors(Number(r3));
+
+
+
+var doc = new jsPDF();
+var specialElementHandlers = {
+"#editor": function (element, renderer) {
+  return true;
+}
+};
+
+
+
+
+CreatePDFfromHTML();
+
+function CreatePDFfromHTML() {
+var HTML_Width = $(".report").width();
+var HTML_Height = $(".report").height();
+var top_left_margin = 15;
+var PDF_Width = HTML_Width + top_left_margin * 2;
+var PDF_Height = PDF_Width * 1.5 + top_left_margin * 2;
+var canvas_image_width = HTML_Width;
+var canvas_image_height = HTML_Height;
+
+var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+html2canvas($(".report")[0]).then(function (canvas) {
+  var imgData = canvas.toDataURL("image/jpeg", 1.0);
+  var pdf = new jsPDF("p", "pt", [PDF_Width, PDF_Height]);
+  pdf.addImage(
+    imgData,
+    "JPG",
+    top_left_margin,
+    top_left_margin,
+    canvas_image_width,
+    canvas_image_height
+  );
+  for (var i = 1; i <= totalPDFPages; i++) {
+    pdf.addPage(PDF_Width, PDF_Height);
+    pdf.addImage(
+      imgData,
+      "JPG",
+      top_left_margin,
+      -(PDF_Height * i) + top_left_margin * 4,
+      canvas_image_width,
+      canvas_image_height
+    );
+  }
+  pdf.save("zenoti_report.pdf");
+  // $(".report").hide();
+
+  setTimeout(() => {
+            window.close();
+          }, 20000000);
+        });
+
+}
+
+</script>
+
+</html>
