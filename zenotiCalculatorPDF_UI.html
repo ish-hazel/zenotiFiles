@@ -620,8 +620,6 @@ html2canvas($(".report")[0]).then(function (canvas) {
     );
   }
   pdf.save("zenoti_report.pdf");
-  // $(".report").hide();
-
   setTimeout(() => {
             window.close();
           }, 20000000);
